@@ -1,12 +1,6 @@
 #include <assert.h>
 #include <stdio.h>
 
-#define TAB				(0x9)
-#define BACKSPACE		(0x8)
-#define BRACKET_LEFT	(0x3C)
-#define BRACKET_RIGHT	(0x3E)
-#define DASH			(0x2D)
-
 int main()
 {
 	assert(EOF == -1);
@@ -15,17 +9,20 @@ int main()
 
 	while ( (character = getchar()) != EOF)
 	{
-		if (character == TAB)
+		// On some terminals, the backspace deletes the character instead of
+		// moving the cursor back and allowing the next character to write
+		// over it. 
+		// In this case, the order of the characters inside the printf
+		// statements will at least show the brackets, which is more 
+		// descriptive than a plain dash.
+
+		if (character == '\t')
 		{
-			putchar(BRACKET_RIGHT);
-			putchar(BACKSPACE);
-			putchar(DASH);
+			printf("-\b>");
 		}
-		else if (character == BACKSPACE)
+		else if (character == '\b')
 		{
-			putchar(BRACKET_LEFT);
-			putchar(BACKSPACE); 
-			putchar(DASH);
+			printf("-\b<");
 		}
 		else 
 		{
