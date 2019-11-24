@@ -1,33 +1,30 @@
-#include <assert.h>
 #include <stdio.h>
 
 int main()
 {
-	assert(EOF == -1);
-
-	int character;
+	// Declare counting variables, initialize to a known state
+	int num_tabs, num_blanks, num_lines, character;
+	num_tabs = 0;
+	num_blanks = 0;
+	num_lines = 0;
 
 	while ( (character = getchar()) != EOF)
 	{
-		// On some terminals, the backspace deletes the character instead of
-		// moving the cursor back and allowing the next character to write
-		// over it. 
-		// In this case, the order of the characters inside the printf
-		// statements will at least show the brackets, which is more 
-		// descriptive than a plain dash.
-
 		if (character == '\t')
 		{
-			printf("-\b>");
+			++num_tabs;
 		}
-		else if (character == '\b')
+		else if (character == '\n')
 		{
-			printf("-\b<");
+			++num_lines;
 		}
-		else 
+		else if (character == ' ')
 		{
-			putchar(character);
+			++num_blanks;
 		}
+		putchar(character);
 	}
+	printf("\nTabs: %d, newlines: %d, blanks (spaces): %d\n",
+			num_tabs, num_lines, num_blanks);
 	return 0;
 }
