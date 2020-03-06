@@ -1,3 +1,8 @@
+/*
+ * Modify the program to print in reverse order. Change the start/end points and
+ * step direction.
+ */
+
 #include <stdio.h>
 
 int main()

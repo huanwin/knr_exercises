@@ -2,6 +2,9 @@
  * Write a programr to print a histogram of the lengths of words in its input.
  * It is easy to draw the histogram with the bars horizontal; a vertical 
  * orientation is more challenging.
+ *
+ * I had just read Jack Ganssle's blog post about commenting before writing
+ * code, hence the massive commenting in this file. 
  */
 
 #include <stdio.h>
